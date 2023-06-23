@@ -1,0 +1,36 @@
+{% extends 'aplicaciones/base.html' %}
+{% load static %}
+{%block contenido%}
+
+<link rel="stylesheet" href="{% static 'aplicaciones/css/estilo_cards.css' %}">
+<main style="margin-top: 10vh; "><!-- Fondo mas margen entre menu y main -->
+    <div class="row">
+        
+        {% for vini in v %}
+    
+        <div style="display: flex;" class="col-sm-6 col-md-4 col-lg-4 col-xl-3 p-5">
+        <div class="card efecto text-center">
+            <p>{{vini.estilo_pop}}</p>
+            <a href="/detalle/{{vini.id}}/">
+            <img class="card-img-top img-fluid no-gif" src=/media/{{vini.cara_delante}}>
+            <img class="card-img-top img-fluid gif" src=/media/{{vini.cara_detras}}></a>
+            <h3>{{vini.nombre_cantante}} - {{vini.nombre_vinilo}}</h3>
+            <p>{{vini.estilo}}</p>
+            <div class="precio">${{vini.precio}}</div>
+            <br>
+            <div class="card-footer purchase-info">
+                <button type="button" class="btn">
+                    Agregar al carro <i class="fas fa-shopping-cart"></i>
+                </button>
+                <br>
+                <a href="carrito.html"><button type="button" class="btn" ;
+                        style="background-color: black;">Comprar</button></a>
+            </div>
+        </div>
+        </div>
+            {% endfor %}
+        
+    </div>
+</main>
+
+{%endblock%}

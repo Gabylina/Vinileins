@@ -1,0 +1,87 @@
+{% extends 'aplicaciones/base.html' %}
+{% load static %}
+{%block contenido%}
+<link rel="stylesheet" href="{% static 'aplicaciones/css/estilo_detalle.css' %}">
+
+<main style="margin-top: 50px; margin-bottom: 250px; ">
+
+    <div class="card-wrapper">
+        <div class="card-vi ">
+            <!-- card left -->
+            <div class="product-imgs">
+                <div class="img-display">
+                    <div class="img-showcase" style="margin-top: 50px;">
+                        <img class="img-1" src=/media/{{v.cara_delante}}>
+                        <img class="img-1" src=/media/{{v.cara_detras}}>
+                    </div>
+                </div>
+                <div class="img-select">
+                    <div class="img-item">
+                        <a href="#" data-id="1">
+                            <img class="img-1" src=/media/{{v.cara_delante}}>
+                        </a>
+                    </div>
+                    <div class="img-item">
+                        <a href="#" data-id="2">
+                            <img class="img-1" src=/media/{{v.cara_detras}}>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- card right -->
+        <div class="product-content" style=" margin-left: -20px;">
+            <h2 class="product-title">{{ v.nombre_cantante}} - {{v.nombre_vinilo}}</h2>
+            <br>
+            <div class="product-rating">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
+                <span>4.8(58)</span>
+            </div>
+            <br>
+            <div class="product-price">
+                <p class="new-price"><span>${{v.precio}}</span></p>
+            </div>
+
+            <div class="product-detail"></div>
+
+            <div class="purchase-info">
+                <br>
+
+                <input style="font-size: 15px ;" type="number" min="0" value="1">
+                <br>
+                <br>
+                <button type="button" class="btn">
+                    Agregar al carro <i class="fas fa-shopping-cart"></i>
+                </button>
+                <br>
+                <br>
+                <a href="../../carrito.html"><button type="button" class="btn" ;
+                        style="background-color: black;">Comprar</button></a>
+            </div>
+            <br>
+            <div class="social-links">
+                <p>Compartir: </p>
+                <a href="#">
+                    <i class="fab fa-facebook"></i>
+                </a>
+                <a href="#">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="#">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="#">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</main>
+    <script src="{% static 'aplicaciones/js/scriptvinilos.js' %}"></script>
+
+
+    {%endblock%}

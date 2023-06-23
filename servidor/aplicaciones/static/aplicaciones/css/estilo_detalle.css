@@ -1,0 +1,170 @@
+
+
+/*contenido  vinilos*/
+body{
+    line-height: 1.5;
+}
+.card-wrapper{
+    max-width: 500px;
+    margin: 0 auto;
+}
+.img-1{
+    width: 100%;
+    display: block;
+}
+.img-display{
+    overflow: hidden;
+}
+.img-showcase{
+    display: flex;
+    width: 100%;
+    transition: all 0.5s ease;
+}
+.img-showcase img{
+    min-width: 100%;
+}
+.img-select{
+    display: flex;
+    width:250px;
+
+}
+.img-item{
+    margin: 0.3rem;
+    width: 250px;
+
+}
+
+.img-item:hover{
+    opacity: 0.8;
+}
+.product-content{
+    padding: 5rem;
+}
+.product-title{
+    font-size: 25px;
+    text-transform: capitalize;
+    font-weight: bold;
+    color: #12263a;
+
+}
+
+
+.product-rating{
+    color: #ffc107;
+	font-size: 20px;
+}
+.product-rating span{
+    font-weight: 500;
+    color: #252525;
+}
+.product-price{
+    margin: 1rem 0;
+    font-size: 20px;
+    font-weight: 400;
+}
+.product-price span{
+    font-weight: 200;
+}
+
+.last-price span{
+    color: #f64749;
+    text-decoration: line-through;
+}
+
+.new-price span{
+    color: #000000;
+    font-weight: bolder;
+}
+.product-detail h2{
+    text-transform: capitalize;
+    color: #12263a;
+	font-size: 20px;
+}
+.product-detail p{
+    font-size: 15px;
+    opacity: 0.8;
+}
+
+.purchase-info input,
+.purchase-info .btn{
+    border: 2px solid #ddd;
+    border-radius: 25px;
+    text-align: center;
+    padding: 0.45rem 3rem;
+    outline: 0;
+    margin-right: 0.2rem;
+    margin-bottom: 1rem;
+}
+.purchase-info input{
+    width: 90px;
+}
+.purchase-info .btn{
+    cursor: pointer;
+    color: #fff;
+	font-size: 15px;
+}
+.purchase-info .btn:first-of-type{
+    background: #000;
+}
+.purchase-info .btn:last-of-type{
+    background: #ff9f00;
+}
+.purchase-info .btn:hover{
+    opacity: 0.8;
+}
+.social-links{
+    display: flex;
+    align-items: center;
+	font-size: 15px;
+}
+.social-links a{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 45px;
+    color: #000;
+    border: 2px solid #000;
+    margin: 0 0.2rem;
+    border-radius: 50%;
+    text-decoration: none;
+    font-size:3rem;
+    transition: all 0.5s ease;
+}
+.social-links a:hover{
+    background: #000;
+    border-color: transparent;
+    color: #fff;
+}
+
+@media screen and (min-width: 992px){
+    .card{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 1.5rem;
+    }
+    .card-wrapper{
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .product-imgs{
+        display: flex;
+        padding-top: 30%;
+        width: 600px;
+        flex-direction: column;
+        justify-content: center;
+    }
+    .product-content{
+        padding-top: 0;
+    }
+}
+@font-face {
+	font-family: vinilo;
+	src: url(../fuentes/vinilo.ttf) format("truetype");
+	}
+	.fuente_vinilo{
+		font-family: vinilo;
+		font-size: 25px;
+	}

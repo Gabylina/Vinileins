@@ -1,0 +1,101 @@
+
+/* .card{
+    width:300px;
+    text-align:center;
+    margin:20px;
+    display: flex;
+
+} */
+
+
+.card-title {
+	color: #000000;
+
+	/* color del texto */
+}
+
+.card-text {
+	color: #000000;
+
+}
+
+
+.card h3{
+	color: #000000;
+	padding: .5rem 0;
+	font-size: 2rem;
+
+
+}
+.card p{
+	color: #000000;
+	font-size: 1.5rem;
+
+}
+.precio{
+	color: #000000;
+	font-size: 15px;
+	font-weight: bold;
+	
+}
+
+.purchase-info input,
+.purchase-info .btn{
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    text-align: center;
+    padding: 0.45rem 3rem;
+    outline: 0;
+
+}
+.purchase-info input{
+    width: 90px;
+}
+.purchase-info .btn{
+    cursor: pointer;
+    color: #fff;
+	font-size: 10px;
+}
+.purchase-info .btn:first-of-type{
+    background: #000;
+}
+.purchase-info .btn:last-of-type{
+    background: #6d92ac;
+}
+.purchase-info .btn:hover{
+    opacity: 0.8;
+}
+
+
+
+/*DEL NICO*/
+.left {
+	float: left;
+	margin-left: 30px;
+	margin-right: 40px;
+	margin-bottom: 20px;
+	align-content: center;
+	line-height: 2;
+    display: flex;
+}
+.no-gif, .efecto:hover .gif{
+    display: flex;
+}
+.gif , .efecto:hover .no-gif{
+    display: none;
+}  
+.btn{
+    background: black;
+    color: white;
+}
+th, td {
+    text-align: center;
+	align-items: center;
+	align-self: center;
+	width: 200px;
+}
+
+
+
+
+
