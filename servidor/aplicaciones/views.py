@@ -3,6 +3,7 @@ from datetime import date
 from .models import Administrador,Vinilo
 from .forms import formCrearVinilo,formModificarVinilo
 from django.db.models import Q
+from django.contrib.auth.decorators import login_required #obliga a que este logeado el cliente para realizar el cambio de vista
 # Create your views here.
 
 def index(request):
@@ -132,6 +133,11 @@ def listar_vinilos_vini(request):
             
         ).distinct()
     return render(request,'aplicaciones/viniloscli.html',{'v':v})
+
+@login_required
+def pagar_log_required(request):
+    
+    return render(request,'aplicaciones/pagar_log_required.html')
 
 # def vin_pop(request, estilo):
 #     v=get_object_or_404(Vinilo,id=estilo)

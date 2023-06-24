@@ -46,8 +46,13 @@
                         </li>
                     </ul>
                 </li> -->
-                <li> <a class="button_perf fuente_vinilo" style="float: left;" href="Inicio_sesion.html"><i
-                            class="fa fa-user"></i></a></li>
+                {% if request_user.is_authenticated %}
+                <li> <a class="button_perf fuente_vinilo" style="float: left;" href="{% url 'pagar_log_required' %}"><i
+                            class="fa fa-user"></i> Salir</a></li>
+                {% else %}
+                <li> <a class="button_perf fuente_vinilo" style="float: left;" href="{% url 'login' %}"><i
+                    class="fa fa-user"></i> ingresar</a></li>
+                {% endif %} 
                 <li> <a class="button_perf fuente_vinilo" style="float: left;" href="carrito.html"><i
                             class="fa fa-shopping-cart"></i></a></li>
             </ul>

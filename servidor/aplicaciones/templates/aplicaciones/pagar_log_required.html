@@ -1,0 +1,11 @@
+{% extends 'aplicaciones/base.html'%}
+{% load static %}
+{%block contenido%}
+
+    <main style="margin-top: 10vh; "><!-- Fondo mas margen entre menu y main -->
+        <h1>supuesto pago con login</h1>
+        <h4>{{ user.username | upper }}, Bienvenido</h4>
+    </main>
+
+
+{%endblock%}
