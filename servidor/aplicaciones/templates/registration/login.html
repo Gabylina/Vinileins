@@ -4,15 +4,14 @@
 
 <h1 style="margin-top:10%;">login</h1>
 
-<form action="" class="POST">
+<form action="" method="POST">
     {% csrf_token %}
 
-    <input type="text" name="username" id="" placeholder="Nombre de Usuario">
-    <hr>
-    <input type="password" name="password" id="" placeholder="Contrasena">
+    <input type="text" name="username" placeholder="Nombre de Usuario">
+    <input type="password" name="password" placeholder="Contraseña">
+    <br>
     <button type="submit">Iniciar Sesión</button>
 
 </form>
-
 
 {%endblock%}
