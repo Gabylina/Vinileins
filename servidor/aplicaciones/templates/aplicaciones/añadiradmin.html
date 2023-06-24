@@ -2,7 +2,6 @@
 {% load crispy_forms_tags %}
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -45,17 +44,13 @@
     </header>
     <main style="margin-top: 15vh;">
         <!--AGREGAR POST PARA QUE HAGA LA WEAITA-->
-        <form class="row g-3 container d-flex" style="margin: auto;" action="" method="POST"
-            enctype="multipart/form-data">
-            <h2>Modificar Vinilo</h2>
-            <h3>Editando el vinilo {{vinilo}}</h3>
-            {% csrf_token %}
+        <form class="row g-3 container d-flex" style="margin: auto;" action="" method="POST" enctype="multipart/form-data" > 
+            <h3>Ingresa los datos del Nuevo Administrador</h3>   
+            {% csrf_token %} 
             {{ form|crispy}}
-            <div class="col-8">
-                <input type="submit" value="Modificar" class="btn btn-success btn-lg"
-                    style="margin: 15px;width: 100px;height: 50px;">
-                <a href="{% url 'vinilos' %}"><button type="button" class="btn btn-primary"
-                        style="margin: 15px;width: 100px;height: 50px;">Cancelar</button></a>
+            <div class="col-8" >
+                <input type="submit" value="Guardar" class="btn btn-success btn-lg" style="margin: 15px;width: 100px;height: 50px;">
+                <a href="{% url 'index' %}"><button type="button" class="btn " style="margin: 15px;width: 100px;height: 50px;">Cancelar</button></a>
             </div>
         </form>
     </main>

@@ -28,24 +28,11 @@
         <label for="menu-bar">Menu</label>
         <nav class="navbar">
             <ul class="marg">
-                <li> <a class="fuente_vinilo" style="text-decoration: none" href="#">Vinilos +</a>
-                    <ul>
-                        <li><a class="fuente_vinilo" style="text-decoration: none" href="Admin_vinilos.html">Gestionar
-                                vinilos</a>
-                        </li>
-                        <li><a class="fuente_vinilo" style="text-decoration: none"
-                                href="Admin_vinilos_oferta.html">Poner en oferta</a>
-                        </li>
-                    </ul>
+                <li> 
+                    <a class="fuente_vinilo" style="text-decoration: none" href="{% url 'vinilos' %}">Gestionar vinilos</a>
                 </li>
-                <li> <a class="fuente_vinilo" style="text-decoration: none" href="#">Usuarios +</a>
-                    <ul>
-                        <li><a class="fuente_vinilo" style="text-decoration: none" href="Admin_usuarios.html">Gestionar
-                                usuarios</a>
-                        </li>
-                        <li><a class="fuente_vinilo" style="text-decoration: none" href="">Algo mas aqui</a>
-                        </li>
-                    </ul>
+                <li>
+                    <a class="fuente_vinilo" style="text-decoration: none" href="Admin_usuarios.html">Gestionar usuarios</a>
                 </li>
                 <li>
                     <a class="fuente_vinilo" style="text-decoration: none" href="Admin_pedidos.html">Pedidos</a>

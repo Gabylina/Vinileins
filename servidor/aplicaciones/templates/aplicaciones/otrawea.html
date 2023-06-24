@@ -1,36 +1,63 @@
-{% extends 'aplicaciones/base.html' %}
-{% load static %}
-{%block contenido%}
-
-<link rel="stylesheet" href="{% static 'aplicaciones/css/estilo_cards.css' %}">
-<main style="margin-top: 10vh; "><!-- Fondo mas margen entre menu y main -->
-    <div class="row">
-        
-        {% for vini in v %}
-    
-        <div style="display: flex;" class="col-sm-6 col-md-4 col-lg-4 col-xl-3 p-5">
-        <div class="card efecto text-center">
-            <p>{{vini.estilo_pop}}</p>
-            <a href="/detalle/{{vini.id}}/">
-            <img class="card-img-top img-fluid no-gif" src=/media/{{vini.cara_delante}}>
-            <img class="card-img-top img-fluid gif" src=/media/{{vini.cara_detras}}></a>
-            <h3>{{vini.nombre_cantante}} - {{vini.nombre_vinilo}}</h3>
-            <p>{{vini.estilo}}</p>
-            <div class="precio">${{vini.precio}}</div>
-            <br>
-            <div class="card-footer purchase-info">
-                <button type="button" class="btn">
-                    Agregar al carro <i class="fas fa-shopping-cart"></i>
-                </button>
-                <br>
-                <a href="carrito.html"><button type="button" class="btn" ;
-                        style="background-color: black;">Comprar</button></a>
+<div calss="album py-3">
+    <ol class="list-group list-group-numbered" style="width: max-content; margin-left: 20px;">
+        <div class="d-flex justify-content-between align-items-start">
+            <h1>Control del Administrador</h1>
+        </div>
+        <li class="list-group-item d-flex justify-content-between align-items-start">
+            <div class="ms-2 me-auto">
+                <div class="fw-bold">Vinilos</div>
+                Vinilos En Venta
             </div>
-        </div>
-        </div>
-            {% endfor %}
-        
-    </div>
-</main>
-
-{%endblock%}
+            <span class="badge bg-primary rounded-pill">18</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-start">
+            <div class="ms-2 me-auto">
+                <div class="fw-bold">Vinilos</div>
+                Vinilos En Oferta
+            </div>
+            <span class="badge bg-primary rounded-pill">5</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-start">
+            <div class="ms-2 me-auto">
+                <div class="fw-bold">Usuarios</div>
+                Cuentas Creadas
+            </div>
+            <span class="badge bg-primary rounded-pill">3</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-start">
+            <div class="ms-2 me-auto">
+                <div class="fw-bold">Usuarios</div>
+                Cuentas Online
+            </div>
+            <span class="badge bg-primary rounded-pill">1</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-start">
+            <div class="ms-2 me-auto">
+                <div class="fw-bold">Administrador</div>
+                Cuentas de Administradores
+            </div>
+            <span class="badge bg-primary rounded-pill">3</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-start">
+            <div class="ms-2 me-auto">
+                <div class="fw-bold">Pedidos</div>
+                Pedido sin enviar
+            </div>
+            <span class="badge bg-primary rounded-pill">1</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-start">
+            <div class="ms-2 me-auto">
+                <div class="fw-bold">Pedidos</div>
+                Pedido En transito
+            </div>
+            <span class="badge bg-primary rounded-pill">1</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-start">
+            <div class="ms-2 me-auto">
+                <div class="fw-bold">Pedidos</div>
+                Pedido Completados
+            </div>
+            <span class="badge bg-primary rounded-pill">1</span>
+        </li>
+    </ol>
+</div>

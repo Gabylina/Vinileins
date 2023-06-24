@@ -28,15 +28,8 @@
         <label for="menu-bar">Menu</label>
         <nav class="navbar">
             <ul class="marg">
-                <li> <a class="fuente_vinilo" style="text-decoration: none" href="#">Vinilos +</a>
-                    <ul>
-                        <li><a class="fuente_vinilo" style="text-decoration: none" href="Admin_vinilos.html">Gestionar
-                                vinilos</a>
-                        </li>
-                        <li><a class="fuente_vinilo" style="text-decoration: none"
-                                href="Admin_vinilos_oferta.html">Poner en oferta</a>
-                        </li>
-                    </ul>
+                <li> 
+                    <a class="fuente_vinilo" style="text-decoration: none" href="{% url 'vinilos' %}">Gestionar vinilos</a>
                 </li>
                 <li>
                     <a class="fuente_vinilo" style="text-decoration: none" href="Admin_usuarios.html">Gestionar usuarios</a>
@@ -96,7 +89,7 @@
                                     <td>
                                         <!--AGREGAR LO DEL PROFE PARA SACAR CON ID HY PODER BORRAR O MODIFICAR-->
                                         <a href="{% url 'modificarvinilo' vini.id %}" role="button" class="btn btn-primary">Modificar</a>
-                                        <a href="" class="btn btn-primary">Eliminar</a>
+                                        <a href="{% url 'eliminarvinilo' vini.id %}" role="button" class="btn btn-primary">Eliminar</a>
                                     </td>
                                 </tr>
                                 {% endfor %}                                
