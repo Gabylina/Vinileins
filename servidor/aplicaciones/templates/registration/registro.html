@@ -4,13 +4,14 @@
 
 <link rel="stylesheet" href="{% static 'aplicaciones/css/log.css' %}">
 
-<h1 style="margin-top:10%;">login</h1>
+<h1 style="margin-top:10%;">Registro de usuario</h1>
 {% load crispy_forms_tags %}
 <div class="container">
     <div class="row">
         <div class="col-12 col-md-6 offset-md-3">
             <div class="card">
                 <div class="card-body">
+                    <h2>Registrate</h2>
                     <form action="" method="POST">
                         {% csrf_token %}
                         {{form | crispy}}
@@ -18,7 +19,8 @@
                         <input type="text" name="username" placeholder="Nombre de Usuario">
                         <input type="password" name="password" placeholder="Contraseña"> -->
                         <br>
-                        <button type="submit" class="butt">Iniciar Sesión</button>
+                        <button type="submit"style="margin-right: 50%;">Registrar</button>
+                        <button class="but"><a href="{% url 'login' %}" style="text-decoration: none; ">Iniciar sesión</a></button>
                         <button class="but"><a href="{% url 'iniciocliente' %}" style="text-decoration: none; ">volver</a></button>
 
                         

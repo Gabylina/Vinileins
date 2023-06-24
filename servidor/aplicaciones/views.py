@@ -134,6 +134,9 @@ def listar_vinilos_vini(request):
         ).distinct()
     return render(request,'aplicaciones/viniloscli.html',{'v':v})
 
+def registro(request):
+    return render(request,'registration/registro.html')
+
 @login_required
 def pagar_log_required(request):
     
