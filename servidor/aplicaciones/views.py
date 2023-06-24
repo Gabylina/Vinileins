@@ -1,6 +1,6 @@
 from django.shortcuts import render,get_object_or_404,redirect
 from datetime import date
-from .models import Administrador,Vinilo
+from .models import Administrador, Cliente,Vinilo
 from .forms import formCrearVinilo,formCrearAdmin
 from django.db.models import Q
 # Create your views here.
@@ -147,6 +147,14 @@ def listar_vinilos_vini(request):
             
         ).distinct()
     return render(request,'aplicaciones/viniloscli.html',{'v':v})
+
+def cliente(request):
+    cli=Cliente.objects.all()
+    
+    contexto={
+        "cli":cli,
+    }
+    return render(request,'aplicaciones/cliente.html',contexto)
 
 # def vin_pop(request, estilo):
 #     v=get_object_or_404(Vinilo,id=estilo)
