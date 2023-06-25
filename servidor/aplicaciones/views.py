@@ -1,5 +1,6 @@
 from django.shortcuts import render,get_object_or_404,redirect
 from datetime import date
+from aplicaciones.carrito import Carrito
 from .models import Administrador, Cliente, Pedido,Vinilo
 from .forms import formCrearVinilo,formCrearAdmin,formpedido
 from django.db.models import Q
@@ -16,14 +17,46 @@ def index(request):
     return render(request,'aplicaciones/admin/index.html',contexto)
 
 def otrawea(request):
-    v=Vinilo.objects.all()
+    Vinilos=Vinilo.objects.all()
 
     contexto={
-        "v":v,
+        "v":Vinilos,
     }
 
     return render(request,'aplicaciones/otrawea.html',contexto)
 
+def agregar_Vinilo(request, Vinilo_id):
+    carrito=Carrito(request)
+    vinilo=Vinilo.objects.get(id=Vinilo_id)
+    carrito.agregar(vinilo)
+    return redirect(to="otrawea")
+    
+def comprarahora(request, Vinilo_id):
+    carrito=Carrito(request)
+    vinilo=Vinilo.objects.get(id=Vinilo_id)
+    carrito.agregar(vinilo)
+    
+    return render(request,'aplicaciones/carrito.html')
+    
+def eliminar_Vinilo(request, vinilo_id):
+    carrito=Carrito(request)
+    vinilo=Vinilo.objects.get(id=vinilo_id)
+    carrito.elminar(vinilo)
+    return render(request,'aplicaciones/carrito.html')
+    
+def restar_Vinilo(request, Vinilo_id):
+    carrito=Carrito(request)
+    vinilo=Vinilo.objects.get(id=Vinilo_id)
+    carrito.restar(vinilo)
+    return render(request,'aplicaciones/carrito.html')
+    
+def limpiar_Carrito(request):
+    carrito=Carrito(request)
+    carrito.limpiar()
+    return render(request,'aplicaciones/carrito.html')
+
+def carrito(reuqest):
+    return render(reuqest,'aplicaciones/carrito.html')
 def vinilos(request):
     vini=Vinilo.objects.all()
     
