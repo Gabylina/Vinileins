@@ -1,11 +1,8 @@
 from django.contrib import admin
 from django.utils.html import format_html
-from .models import Cliente, Administrador, Vinilo, Carrito
+from .models import Cliente, Administrador, Pedido, Vinilo, Carrito
 
 ###################ESTO ES DE INGENERIA EN INFORMATICA############################
-
-from .models import Presupuesto
-# Register your models here.
 
 class admCliente(admin.ModelAdmin):
     list_display=["rut","nombre","apellido","correo","contra","direccion","region","comuna","telefono"]
@@ -38,18 +35,16 @@ class admCarrito(admin.ModelAdmin):
     class meta:
         model=Carrito
 
+class admPedido(admin.ModelAdmin):
+    list_display=["id","producto","total","estado"]
+    list_editable=["estado"]
+    
+    class meta:
+        model=Pedido
+
 admin.site.register(Cliente,admCliente)
 admin.site.register(Administrador,admAdministrador)
 admin.site.register(Vinilo,admVinilo)
 admin.site.register(Carrito,admCarrito)
+admin.site.register(Pedido,admPedido)
 
-
-
-###################ESTO ES DE INGENERIA EN INFORMATICA############################
-class admPresupuesto(admin.ModelAdmin):
-    list_display=["id","cliente","descripcion","monto"]
-    
-    class meta:
-        model=Presupuesto
-
-admin.site.register(Presupuesto,admPresupuesto)

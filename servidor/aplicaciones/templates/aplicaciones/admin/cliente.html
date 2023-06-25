@@ -22,22 +22,26 @@
 <body>
     <!-- menu -->
     <header style="height: 10vh; ">
-        <a href="{% url 'index' %}" class="logo fuente_vinilo" style="text-decoration: none;"><img src="{% static 'aplicaciones/img/vinilo.png' %}"
-            height="60px" style="  padding-right: 20px;" alt="Logo"> Vinileins</a>
+        <a href="{% url 'index' %}" class="logo fuente_vinilo" style="text-decoration: none;"><img
+                src="{% static 'aplicaciones/img/vinilo.png' %}" height="60px" style="  padding-right: 20px;"
+                alt="Logo"> Vinileins</a>
         <input type="checkbox" id="menu-bar">
         <label for="menu-bar">Menu</label>
         <nav class="navbar">
             <ul class="marg">
-                <li> 
-                    <a class="fuente_vinilo" style="text-decoration: none" href="{% url 'vinilos' %}">Gestionar vinilos</a>
+                <li>
+                    <a class="fuente_vinilo" style="text-decoration: none" href="{% url 'vinilos' %}">Gestionar
+                        vinilos</a>
                 </li>
                 <li>
-                    <a class="fuente_vinilo" style="text-decoration: none" href="{% url 'cliente' %}">Gestionar usuarios</a>
+                    <a class="fuente_vinilo" style="text-decoration: none" href="{% url 'cliente' %}">Gestionar
+                        usuarios</a>
                 </li>
                 <li>
-                    <a class="fuente_vinilo" style="text-decoration: none" href="Admin_pedidos.html">Pedidos</a>
+                    <a class="fuente_vinilo" style="text-decoration: none" href="{% url 'pedidos' %}">Pedidos</a>
                 </li>
-                <li> <a class="button_perf fuente_vinilo " href="index.html">Salir</a></li>
+                <li> <a class="button_perf fuente_vinilo " href="{% url 'iniciocliente' %}">Salir</a>
+                </li>
             </ul>
 
         </nav>
@@ -76,17 +80,18 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                {% for cl in cli  %}
+                                {% for cl in cli %}
                                 <tr>
                                     <td>{{cl.nombre}} {{cl.apellido}} </td>
                                     <td>{{cl.correo}}</td>
                                     <td>{{cl.telefono}}</td>
                                     <td>
                                         <a href="" class="btn btn-primary disabled">Activar</a>
-                                        <a href="GestionarUsuario_admin.html" type="button" class="btn btn-primary">Desactivar</a>
+                                        <a href="GestionarUsuario_admin.html" type="button"
+                                            class="btn btn-primary">Desactivar</a>
                                     </td>
                                 </tr>
-                                {% endfor %}                                
+                                {% endfor %}
                             </tbody>
                         </table>
                     </div>

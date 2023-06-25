@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.urls import include, path
 from django.conf import settings
 from django.conf.urls.static import static
-from .views import index, otrawea, vinilos, añadir, modificarvinilo,añadiradmin,cliente,iniciocliente,eliminarvinilo, detalle, viniloscli, listar_vinilos, listar_vinilos_vini
+from .views import index, modificarestado, otrawea, pedidos, vinilos, añadir, modificarvinilo,añadiradmin,cliente,iniciocliente,eliminarvinilo, detalle, viniloscli, listar_vinilos, listar_vinilos_vini
 
 #URLS.py aplicaciones
 urlpatterns = [
@@ -14,6 +14,8 @@ urlpatterns = [
     path('eliminarvinilo/<id>/',eliminarvinilo,name="eliminarvinilo"),
     path('añadiradmin',añadiradmin,name='añadiradmin'),
     path('cliente',cliente,name='cliente'),
+    path('pedidos',pedidos,name='pedidos'),
+    path('modificarestado/<id>/',modificarestado,name='modificarestado'),
     path('iniciocliente',listar_vinilos,name='iniciocliente'),
     path('detalle',detalle, name='detalle'),
     path('viniloscli',listar_vinilos_vini, name='viniloscli'),

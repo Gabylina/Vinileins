@@ -1,7 +1,7 @@
 from django.shortcuts import render,get_object_or_404,redirect
 from datetime import date
-from .models import Administrador, Cliente,Vinilo
-from .forms import formCrearVinilo,formCrearAdmin
+from .models import Administrador, Cliente, Pedido,Vinilo
+from .forms import formCrearVinilo,formCrearAdmin,formpedido
 from django.db.models import Q
 # Create your views here.
 
@@ -13,7 +13,7 @@ def index(request):
         "admins":admin,
     }
     
-    return render(request,'aplicaciones/index.html',contexto)
+    return render(request,'aplicaciones/admin/index.html',contexto)
 
 def otrawea(request):
     v=Vinilo.objects.all()
@@ -31,7 +31,7 @@ def vinilos(request):
         "vini":vini,
     }
     
-    return render(request,'aplicaciones/vinilos.html',contexto)
+    return render(request,'aplicaciones/admin/vinilos.html',contexto)
 
 def añadir(request):
     form=formCrearVinilo(request.POST,request.FILES or None)
@@ -46,7 +46,7 @@ def añadir(request):
             form.save()
             return redirect(to="vinilos")
     
-    return render(request,'aplicaciones/añadirvinilo.html',contexto)
+    return render(request,'aplicaciones/admin/añadirvinilo.html',contexto)
 
 def modificarvinilo(request,id):
     Producto=get_object_or_404(Vinilo,id=id)
@@ -56,7 +56,6 @@ def modificarvinilo(request,id):
     }
     
     if request.method=="POST":
-                                    #and request.FILES
         formulario=formCrearVinilo(data=request.POST,files=request.FILES ,instance=Producto)
 
         if formulario.is_valid():
@@ -64,7 +63,24 @@ def modificarvinilo(request,id):
             return redirect(to="vinilos")
         contexto["form"]= formulario
         
-    return render(request,'aplicaciones/modificarvinilo.html',contexto)
+    return render(request,'aplicaciones/admin/modificarvinilo.html',contexto)
+
+def modificarestado(request,id):
+    esta=get_object_or_404(Pedido,id=id)
+    
+    contexto={
+        'form':formpedido(instance=esta)
+    }
+    
+    if request.method=="POST":
+        formulario=formpedido(data=request.POST,instance=esta)
+
+        if formulario.is_valid():
+            formulario.save()
+            return redirect(to="pedidos")
+        
+        
+    return render(request,'aplicaciones/admin/modificarestado.html',contexto)
 
 def eliminarvinilo(request,id):
     producto=get_object_or_404(Vinilo,id=id)
@@ -79,7 +95,7 @@ def eliminarvinilo(request,id):
         return redirect(to="vinilos")
 
 
-    return render(request,"aplicaciones/eliminarvinilo.html",contexto)
+    return render(request,"aplicaciones/admin/eliminarvinilo.html",contexto)
 
 def añadiradmin(request):
     form=formCrearAdmin(request.POST or None)
@@ -94,7 +110,16 @@ def añadiradmin(request):
             form.save()
             return redirect(to="index")
     
-    return render(request,'aplicaciones/añadiradmin.html',contexto)
+    return render(request,'aplicaciones/admin/añadiradmin.html',contexto)
+
+def pedidos(request):
+    ped=Pedido.objects.all()
+    contexto={
+        "ped":ped,
+    }
+    
+    return render(request,'aplicaciones/admin/pedidos.html',contexto)
+
 
 def viniloscli(request):
     v=Vinilo.objects.all()
@@ -154,7 +179,7 @@ def cliente(request):
     contexto={
         "cli":cli,
     }
-    return render(request,'aplicaciones/cliente.html',contexto)
+    return render(request,'aplicaciones/admin/cliente.html',contexto)
 
 # def vin_pop(request, estilo):
 #     v=get_object_or_404(Vinilo,id=estilo)
