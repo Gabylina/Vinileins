@@ -1,16 +1,103 @@
-{% extends 'aplicaciones/base.html' %}
-{% load static %}
-{%block contenido%}
+{%load static%}
+<!DOCTYPE html>
+<html lang="es">
 
-<link rel="stylesheet" href="{% static 'aplicaciones/css/estilo_cards.css' %}">
-<main style="margin-top: 10vh; "><!-- Fondo mas margen entre menu y main -->
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vinilos</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
+    <!-- Revisar iconos redes sociales -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+
+
+    <!--CREO QUE SE DEBE ELIMINAR-->
+    <link rel="stylesheet" href="{% static 'aplicaciones/css/estilo.css' %}">
+
+
+
+
+</head>
+
+<body>
+    <header style="height: 10vh; ">
+        <a href="{% url 'iniciocliente' %}" class="logo fuente_vinilo" style="text-decoration: none;"><img
+                src="{% static 'aplicaciones/img/vinilo.png' %}" height="60px" style="  padding-right: 20px;"
+                alt="Logo"> Vinileins</a>
+        <input type="checkbox" id="menu-bar">
+        <label for="menu-bar">Menu</label>
+        <nav class="navbar">
+            <ul class="marg">
+                <li> <a class="fuente_vinilo" style="text-decoration: none" href="{% url 'viniloscli' %}">Vinilos</a>
+                </li>
+                <!-- <li> <a class="fuente_vinilo" style="text-decoration: none" href="#">Estilos +</a>
+                    <ul>
+                        <li><a class="fuente_vinilo" style="text-decoration: none"
+                                href="Estilos/vin_pop/vin_pop.html">Pop</a>
+                        </li>
+                        <li><a class="fuente_vinilo" style="text-decoration: none"
+                                href="Estilos/vin_rock/vin_rock.html">Rock</a>
+                        </li>
+                        <li><a class="fuente_vinilo" style="text-decoration: none"
+                                href="Estilos/vin_metal/vin_metal.html">Metal</a>
+                        </li>
+                    </ul>
+                </li> -->
+                <li> <a class="button_perf fuente_vinilo" style="float: left;" href="Inicio_sesion.html"><i
+                            class="fa fa-user"></i></a></li>
+                <li> <a class="button_perf fuente_vinilo" style="float: left;" href="{% url 'carrito' %}"><i
+                            class="fa fa-shopping-cart"></i></a></li>
+            </ul>
+        </nav>
+    </header>
+    <link rel="stylesheet" href="{% static 'aplicaciones/css/estilo_cards.css' %}">
+
+<main style="margin-top: 100px; "><!-- Fondo mas margen entre menu y main -->
+    <form class="pl-5 navbar-search"
+    method="GET">
+    <div class="input-group">
+        <input type="text" class="form-control bg-light border-0 large" placeholder="Buscar..." name="buscar">
+        <div class="input-group-append">
+            <button class="btn btn-primary" type="submit">
+                <i class="fas fa-search fa-sm"></i>
+            </button>
+        </div>
+    </div>
+</form>
+    <!-- Contenido -->
+    <!-- Carousel -->
+    <div style="padding-top: 30px; padding-bottom: 70px;" id="demo" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="{% static 'aplicaciones/img/carrusel.png' %}" height="220px" alt="Los Angeles" class="d-block"
+                    style="width:100%">
+            </div>
+            <div class="carousel-item">
+                <img src="{% static 'aplicaciones/img/carrusel1.png' %}" height="220px" alt="Chicago" class="d-block"
+                    style="width:100%">
+            </div>
+            <div class="carousel-item">
+                <img src="{% static 'aplicaciones/img/carrusel2.png' %}" height="220px" alt="New York" class="d-block"
+                    style="width:100%">
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">
+            <span class="carousel-control-next-icon"></span>
+        </button>
+    </div>
+    <!-- End carusel -->
     <div class="row">
         
         {% for vini in v %}
     
         <div style="display: flex;" class="col-sm-6 col-md-4 col-lg-4 col-xl-3 p-5">
         <div class="card efecto text-center">
-            <p>{{vini.estilo_pop}}</p>
             <a href="/detalle/{{vini.id}}/">
             <img class="card-img-top img-fluid no-gif" src=/media/{{vini.cara_delante}}>
             <img class="card-img-top img-fluid gif" src=/media/{{vini.cara_detras}}></a>
@@ -19,11 +106,11 @@
             <div class="precio">${{vini.precio}}</div>
             <br>
             <div class="card-footer purchase-info">
-                <button type="button" class="btn">
+                <a href="{% url 'add' vini.id %}" class="btn">
                     Agregar al carro <i class="fas fa-shopping-cart"></i>
-                </button>
+                </a>
                 <br>
-                <a href="carrito.html"><button type="button" class="btn" ;
+                <a href="{% url 'com' vini.id %}"><button class="btn" ;
                         style="background-color: black;">Comprar</button></a>
             </div>
         </div>
@@ -33,4 +120,56 @@
     </div>
 </main>
 
-{%endblock%}
+    <footer>
+        <div class="contenedor">
+            <div class="sobre-mi">
+                <h2 class="titulos-footer">Tienda</h2>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. At a quos error sapiente asperiores sed
+                    non, accusamus quaerat praesentium! Laudantium saepe doloribus aut rem dolore minima. Quibusdam
+                    expedita nisi eius.</p>
+                <ul class="redes-sociales"><!-- redes sociales -->
+                    <li><a href="#"><i class="fab fa-facebook"></i></a></li>
+                    <li><a href="#"><i class="fab fa-youtube"></i></a></li>
+                    <li><a href="#"><i class="fab fa-instagram"></i></i></a></li>
+                    <li><a href="#"><i class="fab fa-tiktok"></i></i></a></li>
+                </ul>
+            </div>
+            <div class="contactanos">
+                <h2 class="titulos-footer">Contáctanos</h2>
+                <ul class="informacion-contacto">
+                    <li>
+                        <span><i class="fa-solid fa-location-dot"></i></span>
+                        <p>Una direccion random<br> Concepcion, Biobio</p>
+                    </li>
+                    <li>
+                        <span><i class="fa-solid fa-phone"></i></span>
+                        <p>+123456789 <br> +999999999</p>
+                    </li>
+                    <li>
+                        <span><i class="fa-solid fa-envelope"></i></span>
+                        <p>correo@duocuc.cl</p>
+                    </li>
+                </ul>
+            </div>
+            <div class="navegacion">
+                <h2 class="titulos-footer">Medios de pago</h2>
+                <li>
+                    <i class="fa fa-cc-visa" style="font-size:30px; color:white"></i>
+                    <i class="fa fa-cc-mastercard" style="font-size:30px; color:white"></i>
+                    <i class="fa fa-cc-amex" style="font-size:30px;color:white"></i>
+                    <i class="fa fa-cc-diners-club" style="font-size:30px; color:white"></i>
+                </li>
+            </div>
+
+            <link rel="stylesheet"
+                href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+        </div>
+        <div class="copy">
+            Copyright © 2023 Vinilos por 'sopaipillas'
+        </div>
+    </footer>
+
+</body>
+
+</html>
