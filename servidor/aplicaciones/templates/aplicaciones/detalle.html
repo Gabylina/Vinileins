@@ -54,13 +54,13 @@
                 <input style="font-size: 15px ;" type="number" min="0" value="1">
                 <br>
                 <br>
-                <button type="button" class="btn">
+                <a href="{% url 'add' v.id %}" class="btn">
                     Agregar al carro <i class="fas fa-shopping-cart"></i>
-                </button>
+                </a>
                 <br>
                 <br>
-                <a href="../../carrito.html"><button type="button" class="btn" ;
-                        style="background-color: black;">Comprar</button></a>
+                <a href="{% url 'com' v.id %}"><button class="btn" ;
+                    style="background-color: black;">Comprar</button></a>
             </div>
             <br>
             <div class="social-links">

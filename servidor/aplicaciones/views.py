@@ -29,7 +29,7 @@ def agregar_Vinilo(request, Vinilo_id):
     carrito=Carrito(request)
     vinilo=Vinilo.objects.get(id=Vinilo_id)
     carrito.agregar(vinilo)
-    return redirect(to="otrawea")
+    return redirect(to="iniciocliente")
     
 def comprarahora(request, Vinilo_id):
     carrito=Carrito(request)

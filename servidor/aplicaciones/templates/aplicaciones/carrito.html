@@ -23,7 +23,7 @@
 </head>
 <body>
     <header style="height: 10vh; ">
-        <a href="{% url 'otrawea' %}" class="logo fuente_vinilo" style="text-decoration: none;"><img
+        <a href="{% url 'iniciocliente' %}" class="logo fuente_vinilo" style="text-decoration: none;"><img
                 src="{% static 'aplicaciones/img/vinilo.png' %}" height="60px" style="  padding-right: 20px;"
                 alt="Logo"> Vinileins</a>
         <input type="checkbox" id="menu-bar">
@@ -53,7 +53,7 @@
         </nav>
     </header>
     <!--AQUI VA EL FONDO-->
-    <main style="margin-top: 2vh;"><!-- Fondo mas margen entre menu y main -->
+    <main style="margin-top: 2vh;margin-bottom: 31vh;"><!-- Fondo mas margen entre menu y main -->
         <!-- Contenido -->
         <!-- Carousel -->
 
@@ -77,24 +77,24 @@
                             {% if request.session.carrito.items %}
                             {% for key, value in request.session.carrito.items %}
                                 <tr>
-                                    <td>{{value.nombre}}</td>
-                                    <td>{{value.acumulado}}</td>
-                                    <td>{{value.cantidad}}
+                                    <td style="font-size: medium;">{{value.nombre}}</td>
+                                    <td style="font-size: medium;">{{value.acumulado}}</td>
+                                    <td style="font-size: medium;">{{value.cantidad}}
                                         <a href="{% url 'com' value.Vinilo_id %}" class="badge btn btn-dark badge-dark">+</a>
                                         <a href="{% url 'res' value.Vinilo_id %}" class="badge btn btn-dark badge-dark">-</a>
                                     </td>
                                 </tr>
                             {% endfor %}
                             {% else %}
-                            <tr>
+                            <tr >
                                 <td colspan="3">
                                     <div class="alert alert-danger text-center"> Sin Productos </div>
                                 </td>
                             </tr>
                             {% endif%}
-                            <tr>
+                            <tr >
                                 <th scope="row">Total:</th>
-                                <td colspan="2">$ {{total_carrito}} </td>
+                                <td style="font-size: medium;" colspan="2">$ {{total_carrito}} </td>
                             </tr>
                             </tbody>
                         </table>
@@ -102,13 +102,13 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-6"><a href="{% url 'lim' %}" class=" btn btn-danger">Limpiar</a></div>
-                <div class="col-6"><a href="#" class=" btn btn-success">Comprar</a></div>
+                <div class="col-2"><a style="font-size: medium;" href="{% url 'lim' %}" class=" btn btn-danger">Limpiar</a></div>
+                <div class="col-2"><a style="font-size: medium;" href="#" class=" btn btn-success">Comprar</a></div>
             </div>
         </div>
     </main>
     <!-- Footer -->
-    <footer>
+    <footer >
         <div class="contenedor">
             <div class="sobre-mi">
                 <h2 class="titulos-footer">Tienda</h2>

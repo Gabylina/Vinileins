@@ -23,6 +23,20 @@ class Carrito:
             self.carrito[id]["acumulado"] += Vinilo.precio
         self.guardar_carrito()
         
+    def agregar_detalle(self, Vinilo):
+        id = str(Vinilo.id) 
+        if id not in self.carrito.keys():
+            self.carrito[id] ={
+                "Vinilo_id": Vinilo.id,
+                "nombre":Vinilo.nombre_vinilo,
+                "acumulado":Vinilo.precio,
+                "cantidad":1,
+            }
+        else:
+            self.carrito[id]["cantidad"] += 1 
+            self.carrito[id]["acumulado"] += Vinilo.precio
+        self.guardar_carrito()
+        
     def comprarahora(self, Vinilo):
         id = str(Vinilo.id) 
         if id not in self.carrito.keys():
