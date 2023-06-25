@@ -76,7 +76,7 @@
                                     <th>Nombre</th>
                                     <th>E-mail</th>
                                     <th>celular</th>
-                                    <th>Accion</th>
+                                    <th>Direccion</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -86,9 +86,10 @@
                                     <td>{{cl.correo}}</td>
                                     <td>{{cl.telefono}}</td>
                                     <td>
-                                        <a href="" class="btn btn-primary disabled">Activar</a>
+                                        <!--<a href="" class="btn btn-primary disabled">Activar</a>
                                         <a href="GestionarUsuario_admin.html" type="button"
-                                            class="btn btn-primary">Desactivar</a>
+                                            class="btn btn-primary">Desactivar</a>-->
+                                        {{cl.direccion}}, {{cl.comuna}}, {{cl.region}}
                                     </td>
                                 </tr>
                                 {% endfor %}

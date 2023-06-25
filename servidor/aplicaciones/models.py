@@ -4,8 +4,8 @@ from django.db import models
 
 REGION = [
         ("RM", "Santiago"),
-        ("8", "VIII Bio-BIo"),
-        ("9", "IX Araucania"),
+        ("Bio-Bio", "Bio-Bio"),
+        ("Araucania", "Araucania"),
     ]
 CARGO = [
         ("Encargado ventas", "Encargado ventas"),
@@ -25,7 +25,7 @@ class Cliente(models.Model):
     correo=models.CharField(max_length=100)
     contra=models.CharField(max_length=12)
     direccion=models.CharField(max_length=45)
-    region=models.CharField(max_length=2,choices=REGION)
+    region=models.CharField(max_length=50,choices=REGION)
     comuna=models.CharField(max_length=40)
     telefono=models.IntegerField()
     
