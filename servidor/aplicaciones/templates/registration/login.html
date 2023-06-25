@@ -13,13 +13,14 @@
                 <div class="card-body">
                     <form action="" method="POST">
                         {% csrf_token %}
-                        {{form | crispy}}
+                        {{form|crispy}}
                     <!-- 
                         <input type="text" name="username" placeholder="Nombre de Usuario">
                         <input type="password" name="password" placeholder="Contraseña"> -->
-                        <br>
                         <button type="submit" class="butt">Iniciar Sesión</button>
                         <button class="but"><a href="{% url 'iniciocliente' %}" style="text-decoration: none; ">volver</a></button>
+                        <button class="but"><a href="{% url 'registro' %}" style="text-decoration: none; ">Registrate</a></button>
+                        
 
                         
                     

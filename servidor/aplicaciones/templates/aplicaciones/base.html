@@ -47,8 +47,12 @@
                     </ul>
                 </li> -->
                 {% if user.is_authenticated %}
-                <li> <a class="button_perf fuente_vinilo" style="float: left;" href="{% url 'logout' %}"><i
-                            class="fa fa-user"></i> Salir</a></li>
+                <li><a class="fuente_vinilo" style="text-decoration: none" href="#">{{user.username}}</a>
+                    <ul>
+                        <li><a class="button_perf fuente_vinilo" style="float: left;" href="{% url 'perfilcli' %}"><i class="fa fa-user"></i> Perfil</a></li>
+                        <li><a class="button_perf fuente_vinilo" style="float: left;" href="{% url 'logout' %}"><i class="fa fa-user"></i> Salir</a></li>
+                    </ul>
+                </li>
                 {% else %}
                 <li> <a class="button_perf fuente_vinilo" style="float: left;" href="{% url 'pagar_log_required' %}"><i
                     class="fa fa-user"></i> ingresar</a></li>

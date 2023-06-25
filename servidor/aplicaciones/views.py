@@ -1,9 +1,10 @@
 from django.shortcuts import render,get_object_or_404,redirect
 from datetime import date
 from .models import Administrador,Vinilo
-from .forms import formCrearVinilo,formModificarVinilo
+from .forms import  formCrearCli, formCrearVinilo,formModificarVinilo 
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required #obliga a que este logeado el cliente para realizar el cambio de vista
+from django.contrib.auth import authenticate, login
 # Create your views here.
 
 def index(request):
@@ -135,12 +136,28 @@ def listar_vinilos_vini(request):
     return render(request,'aplicaciones/viniloscli.html',{'v':v})
 
 def registro(request):
-    return render(request,'registration/registro.html')
+    contexto = {
+        'form':formCrearCli()
+    }
+    if request.method == 'POST':
+        formulario = formCrearCli(request.POST)
+        if formulario.is_valid():
+            formulario.save()
+            user = authenticate(username=formulario.cleaned_data["username"],password=formulario.cleaned_data["password1"])
+            login(request,user)
+            return redirect(to="iniciocliente")
+        contexto["form"]=formulario
+    return render(request, 'registration/registro.html', contexto)
 
 @login_required
 def pagar_log_required(request):
     
     return render(request,'aplicaciones/pagar_log_required.html')
+
+@login_required
+def perfilcli(request):
+    
+    return render(request,'aplicaciones/perfilcli.html')
 
 # def vin_pop(request, estilo):
 #     v=get_object_or_404(Vinilo,id=estilo)
@@ -149,3 +166,28 @@ def pagar_log_required(request):
 #         "v":v,
 #     }
 #     return render(request, 'aplicaciones/vin_pop.html', contexto)
+""" del almeja
+def home(request):
+    formext=frmPerfil_ext(request.POST or None)
+    formnormal=frmUsuario(request.POST or None)
+   
+    contexto={
+        "form":formext,
+        "fuser":formnormal
+        
+    }
+
+    if request.method=="POST":
+        if formnormal.is_valid() and formext.is_valid():
+            formnormal.save()
+            datonormal=formnormal.cleaned_data
+            usr=User.objects.get(username=datonormal.get("username"))
+            cli=Usuario()
+            datos=formext.cleaned_data
+            cli.direccion=datos.get("direccion")
+            cli.rut=datos.get("rut")
+            cli.usuario=usr
+            cli.save()
+
+    return render(request,"aplicacion/index.html",contexto)
+"""
