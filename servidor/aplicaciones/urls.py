@@ -4,6 +4,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from .views import agregar_Vinilo, buscarapi, carrito, precompra, comprarahora, crearcuenta, eliminar_Vinilo, index, iniciosesion, limpiar_Carrito, modificarestado, otrawea, pedidos, restar_Vinilo, vinilos, añadir, modificarvinilo,añadiradmin,cliente,iniciocliente,eliminarvinilo, detalle, viniloscli, listar_vinilos, listar_vinilos_vini, pago
 
+
 #URLS.py aplicaciones
 urlpatterns = [
     path('',index,name='index'),
@@ -30,8 +31,8 @@ urlpatterns = [
     path('crearcuenta',crearcuenta,name="crearcuenta"),
     path('buscarapi',buscarapi,name="buscarapi"),
     path('precompra',precompra,name="precompra"),
+
     # path('vin_pop',vin_pop, name='vin_pop'),
-    
     
 ]
 

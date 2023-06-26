@@ -234,6 +234,7 @@ def crearcuenta(request):
     
     return render(request,'aplicaciones/CrearCuenta.html',contexto)
 
+
 def buscarapi(request):
     return render(request,'aplicaciones/buscarapi.html')
 
