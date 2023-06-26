@@ -4,18 +4,7 @@
 
 <link rel="stylesheet" href="{% static 'aplicaciones/css/estilo_cards.css' %}">
 
-<main style="margin-top: 100px; "><!-- Fondo mas margen entre menu y main -->
-    <form class="pl-5 navbar-search"
-    method="GET">
-    <div class="input-group">
-        <input type="text" class="form-control bg-light border-0 large" placeholder="Buscar..." name="buscar">
-        <div class="input-group-append">
-            <button class="btn btn-primary" type="submit">
-                <i class="fas fa-search fa-sm"></i>
-            </button>
-        </div>
-    </div>
-</form>
+<main style="margin-top: 70px; "><!-- Fondo mas margen entre menu y main -->
     <!-- Contenido -->
     <!-- Carousel -->
     <div style="padding-top: 30px; padding-bottom: 70px;" id="demo" class="carousel slide" data-bs-ride="carousel">
@@ -40,6 +29,21 @@
             <span class="carousel-control-next-icon"></span>
         </button>
     </div>
+    <div class="row mt-4">
+        <div class="col-xl-4"></div>
+        <div class="col-xl-4"></div> 
+        <div class="col-xl-3 justify-content-between align-items-center" >
+            <form class="d-flex"
+            method="GET">
+                <input type="text" class="form-control me-2" placeholder="Buscar..." name="buscar" value="{{ request.GET.buscar}}">
+                <div class="input-group-append">
+                    <button style="height: 34px; width: 50px;" class="btn btn-default btn-sm" type="submit">
+                        <span class="glyphicon glyphicon-search"></span>
+                    </button>
+            </form> 
+        </div>
+    </div>
+
     <!-- End carusel -->
     <div class="row">
         

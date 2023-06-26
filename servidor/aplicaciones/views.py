@@ -2,7 +2,7 @@ from django.shortcuts import render,get_object_or_404,redirect
 from datetime import date
 from aplicaciones.carrito import Carrito
 from .models import Administrador, Cliente, Pedido,Vinilo
-from .forms import formCrearVinilo,formCrearAdmin,formpedido
+from .forms import formCrearVinilo,formCrearAdmin,formpedido,formCrearCliente
 from django.db.models import Q
 # Create your views here.
 
@@ -214,6 +214,28 @@ def cliente(request):
     }
     return render(request,'aplicaciones/admin/cliente.html',contexto)
 
+def iniciosesion(request):
+    
+    return render(request,'aplicaciones/inicio_sessio.html')
+
+def crearcuenta(request):
+    
+    form=formCrearCliente(request.POST or None)
+
+    contexto={
+        "form":form,
+        
+    }
+
+    if form.is_valid():
+        crearcli=form.save(commit=False)
+        crearcli.save()
+        return redirect(to="iniciosesion")
+    
+    return render(request,'aplicaciones/CrearCuenta.html',contexto)
+
+def buscarapi(request):
+    return render(request,'aplicaciones/buscarapi.html')
 
 def pago(request,pk):
     vini = Vinilo.objects.get(id=pk)
