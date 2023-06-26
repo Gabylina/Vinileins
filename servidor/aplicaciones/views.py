@@ -214,6 +214,12 @@ def cliente(request):
     }
     return render(request,'aplicaciones/admin/cliente.html',contexto)
 
+
+def pago(request,pk):
+    vini = Vinilo.objects.get(id=pk)
+    contexto = {'vini': vini}
+    return render(request,'aplicaciones/pago.html',contexto)
+
 # def vin_pop(request, estilo):
 #     v=get_object_or_404(Vinilo,id=estilo)
     
@@ -221,3 +227,16 @@ def cliente(request):
 #         "v":v,
 #     }
 #     return render(request, 'aplicaciones/vin_pop.html', contexto)
+
+""" def listar_vinilos_admin(request):
+    busqueda = request.GET.get("buscar")
+    v=Vinilo.objects.all()
+    
+    if busqueda:
+        v = Vinilo.objects.filter(
+            Q(nombre_cantante__icontains = busqueda) |
+            Q(nombre_vinilo__icontains = busqueda) |
+            Q(estilo__icontains = busqueda)
+            
+        ).distinct()
+    return render(request,'aplicaciones/admin/vinilos.html',{'v':v}) """
