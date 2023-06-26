@@ -94,7 +94,11 @@
                             {% endif%}
                             <tr >
                                 <th scope="row">Total:</th>
-                                <td style="font-size: medium;" colspan="2">$ {{total_carrito}} </td>
+                                {% if request.session.carrito.items %}
+                                    <td style="font-size: medium;" colspan="2">$ {{carrito.com.acumulado}} </td>
+                                {% else %}
+                                    <td style="font-size: medium;" colspan="2">$ nara</td>
+                                {% endif %}
                             </tr>
                             </tbody>
                         </table>
@@ -102,8 +106,13 @@
                         </div>
                     </div>
                 </div>
+                
                 <div class="col-2"><a style="font-size: medium;" href="{% url 'lim' %}" class=" btn btn-danger">Limpiar</a></div>
-                <div class="col-2"><a style="font-size: medium;" href="#" class=" btn btn-success">Comprar</a></div>
+                {% if request.session.carrito.items  %}
+                    <div class="col-2"><a style="font-size: medium;" href="{% url 'precompra' %}" class=" btn btn-success">Comprar</a></div>
+                {% else %}
+                    <div class="col-2"><a style="font-size: medium; " href="#" class=" btn btn-success" disabled>Comprar</a></div>
+                {% endif %}
             </div>
         </div>
     </main>
@@ -159,5 +168,4 @@
     </footer>
 
 </body>
-
 </html>

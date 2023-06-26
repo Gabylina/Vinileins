@@ -32,9 +32,9 @@
         <div class="precio">${{vini.precio}}</div>
         <br>
         <div class="card-footer purchase-info">
-            <button type="button" class="btn">
+            <a href="{% url 'add' vini.id %}" class="btn">
                 Agregar al carro <i class="fas fa-shopping-cart"></i>
-            </button>
+            </a>
             <br>
             <a href="carrito.html"><button type="button" class="btn" ;
                     style="background-color: black;">Comprar</button></a>
