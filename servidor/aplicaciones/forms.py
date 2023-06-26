@@ -1,5 +1,5 @@
 from django import forms
-from .models import Pedido, Vinilo,Administrador
+from .models import Cliente, Pedido, Vinilo,Administrador
 
 class formCrearVinilo(forms.ModelForm):
     
@@ -18,3 +18,9 @@ class formpedido(forms.ModelForm):
     class Meta:
         model=Pedido
         fields=["estado"]
+
+class formCrearCliente(forms.ModelForm):
+    
+    class Meta:
+        model=Cliente
+        fields='__all__'
