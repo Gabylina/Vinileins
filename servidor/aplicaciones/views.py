@@ -146,9 +146,9 @@ def añadiradmin(request):
     return render(request,'aplicaciones/admin/añadiradmin.html',contexto)
 
 def pedidos(request):
-    ped=Pedido.objects.all()
+    pedido=Pedido.objects.all()
     contexto={
-        "ped":ped,
+        "ped":pedido,
     }
     
     return render(request,'aplicaciones/admin/pedidos.html',contexto)
@@ -259,13 +259,60 @@ def pago(request):
     total_carrito = 0
     carrito = request.session.get("carrito", {})
     
+    form = formpedido()
+    form.estado = "Sin enviar"
+    
+    product = []
+    
+    
     for key, value in carrito.items():
         total_carrito += value["acumulado"]
+        product.append(value["nombre"])
+        
+    product_str = "; ".join(product)
+    form.producto = product_str
+    form.total = total_carrito
     
     contexto = {
-        'total_carro':total_carrito
+        'total_carro':total_carrito,
+        'pedido':form,
     }
+    
+    if form.is_valid():
+        pedid=form.save(commit=False)
+        pedid.save()
+        return redirect(to="iniciosesion")
     return render(request,'aplicaciones/pago.html',contexto)
+
+def pago(request):
+    total_carrito = 0
+    carrito = request.session.get("carrito", {})
+    
+    form = formpedido()
+    
+
+
+    product = []
+    for key, value in carrito.items():
+        total_carrito += value["acumulado"]
+        product.append(value["nombre"])
+    
+    product_str = "; ".join(product)
+    
+    pedido = Pedido()  # Crear una instancia del modelo Pedido
+    pedido.estado = "Sin enviar"
+    pedido.producto = product_str
+    pedido.total = total_carrito
+    pedido.save()  # Guardar la instancia en la base de datos
+    
+
+    contexto = {
+        'total_carro': total_carrito,
+        'pedido': form,
+    }
+    
+    return render(request, 'aplicaciones/pago.html', contexto)
+
 
 # def vin_pop(request, estilo):
 #     v=get_object_or_404(Vinilo,id=estilo)
