@@ -234,37 +234,12 @@ def crearcuenta(request):
     
     return render(request,'aplicaciones/CrearCuenta.html',contexto)
 
-
 def buscarapi(request):
     return render(request,'aplicaciones/buscarapi.html')
 
-def precompra(request):
-    cli=Cliente.objects.all()
-    
-    total_carrito = 0
-    carrito = request.session.get("carrito", {})
-    
-    for key, value in carrito.items():
-        total_carrito += value["acumulado"]
-    
-    contexto = {
-        'total_carrito': total_carrito,
-        "cli":cli
-    }
-    return render(request,'aplicaciones/precompra.html',contexto)
-
-def pago(request):
-    """ carro = Carrito.objects.get(id=pk)
-    contexto = {'carro': carro} """
-    total_carrito = 0
-    carrito = request.session.get("carrito", {})
-    
-    for key, value in carrito.items():
-        total_carrito += value["acumulado"]
-    
-    contexto = {
-        'total_carro':total_carrito
-    }
+def pago(request,pk):
+    vini = Vinilo.objects.get(id=pk)
+    contexto = {'vini': vini}
     return render(request,'aplicaciones/pago.html',contexto)
 
 # def vin_pop(request, estilo):
