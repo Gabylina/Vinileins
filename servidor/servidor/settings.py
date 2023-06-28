@@ -27,6 +27,10 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+#variables de redireccion al hacer login y logout
+
+LOGIN_REDIRECT_URL = 'iniciocliente'
+LOGOUT_REDIRECT_URL = 'iniciocliente'
 
 # Application definition
 

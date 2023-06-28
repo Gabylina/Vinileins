@@ -2,8 +2,11 @@ from django.shortcuts import render,get_object_or_404,redirect
 from datetime import date
 from aplicaciones.carrito import Carrito
 from .models import Administrador, Cliente, Pedido,Vinilo
-from .forms import formCrearVinilo,formCrearAdmin,formpedido,formCrearCliente
+from .forms import formCreaC, formCrearVinilo,formCrearAdmin,formpedido,formCrearCliente,formCrearCli
 from django.db.models import Q
+from django.contrib.auth.decorators import login_required #obliga a que este logeado el cliente para realizar el cambio de vista
+from django.contrib.auth import authenticate, login
+
 # Create your views here.
 
 def index(request):
@@ -313,6 +316,52 @@ def pago(request):
     
     return render(request, 'aplicaciones/pago.html', contexto)
 
+def registro(request):
+    cliUs = formCrearCli()
+    cli = formCreaC()
+    contexto = {
+        'form':cliUs,
+        'formcli2':cli,
+    }
+    if request.method == 'POST':
+        formulario = formCrearCli(request.POST)
+        formulario2 = formCreaC(request.POST)
+        if formulario.is_valid():
+            formulario.save()
+            formulario2.save()
+            user = authenticate(username=formulario.cleaned_data["username"],password=formulario.cleaned_data["password1"])
+            login(request,user)
+            return redirect(to="iniciocliente")
+        contexto["form"]=formulario
+    return render(request, 'registration/registro.html', contexto)
+
+def registroadmins(request):
+    cliUs = formCrearCli()
+    cli = formCreaC()
+    contexto = {
+        'form':cliUs,
+        'formcli2':cli,
+    }
+    if request.method == 'POST':
+        formulario = formCrearCli(request.POST)
+        formulario2 = formCreaC(request.POST)
+        if formulario.is_valid():
+            formulario.save()
+            formulario2.save()
+            user = authenticate(username=formulario.cleaned_data["username"],password=formulario.cleaned_data["password1"])
+            login(request,user)
+            return redirect(to="iniciocliente")
+        contexto["form"]=formulario
+    return render(request, 'registration/registro.html', contexto)
+
+@login_required
+def perfil(request):
+    cli=Cliente.objects.all()
+    
+    contexto={
+        "cli":cli,
+    }
+    return render(request,'aplicaciones/perfil.html',contexto)
 
 # def vin_pop(request, estilo):
 #     v=get_object_or_404(Vinilo,id=estilo)

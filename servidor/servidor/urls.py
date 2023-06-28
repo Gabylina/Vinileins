@@ -26,6 +26,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('aplicaciones.urls')),
     path('detalle/<int:id>/', views.detalle, name='detalle'),
+    path('accounts/', include('django.contrib.auth.urls')),
+
     # path('vin_pop/<int:estilo>/', views.vin_pop, name='vin_pop'),
     
 ]
