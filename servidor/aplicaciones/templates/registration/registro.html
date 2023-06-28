@@ -5,7 +5,7 @@
 <main>
 <link rel="stylesheet" href="{% static 'aplicaciones/css/log.css' %}">
 
-<h1 style="margin-top:10%;">Registro de usuario</h1>
+<h1 style="padding-top:10%; margin-bottom:5vh; align-content: center; justify-content: center; display: flex;">Registro de Usuario</h1>
 
 <div class="container">
     <div class="row">
@@ -21,12 +21,10 @@
                         
 
                         <br>
-                        <button type="" class="butt">Registrar</button>
-                        <button class="but"><a href="{% url 'iniciocliente' %}" style="text-decoration: none; ">volver</a></button>
-
-                        
-                    
+                        <button type="" class="butt">Registrar</button>                    
                     </form>
+                    <button class="but"><a href="{% url 'login' %}" style="text-decoration: none; ">volver</a></button>
+
                 </div>
             </div>
         </div>

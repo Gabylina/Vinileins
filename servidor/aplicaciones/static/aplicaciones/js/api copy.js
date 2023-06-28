@@ -87,4 +87,3 @@ async function getLyrics(artist, songTitle) {
     <p>${lyrics}</p></div>`;
   
   }
-

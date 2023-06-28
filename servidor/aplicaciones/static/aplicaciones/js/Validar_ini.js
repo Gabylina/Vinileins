@@ -13,11 +13,6 @@ function login(){
     user=document.getElementById("username").value;
     contra=document.getElementById("password").value;
 
-    if(user=="gaby" && contra=="gaby"){
-        location.href ="http://127.0.0.1:8000/iniciocliente";
-    }else{
-        swal("Usuario o contraseña incorrectos","","warning");
-    }
     
     if(user=="nico" && contra=="nico"){
         location.href ="http://127.0.0.1:8000/";

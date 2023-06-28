@@ -47,8 +47,9 @@
                     </thead>
                     <tbody>
                         {% for cl in cli %}
+                        {% if cl.correo == user.username %}
                             {% for cped in Cped %}
-                                {% if cped.cliente == cl.correo %}
+                                {% if cped.cliente == user.username %}
                                     {% for ped in ped %}
                                         {% if ped.id == cped.pedido %}
                                             {% if cped.pedido == ped.id%}
@@ -63,6 +64,7 @@
                                     {% endfor %}
                                 {% endif %}
                             {% endfor %}
+                            {% endif %}
                         {% endfor %}
                     </tbody>
                 </table>
