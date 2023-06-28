@@ -15,7 +15,7 @@ CARGO = [
     ]
 ESTADO =[
         ("Sin enviar","Sin enviar"),
-        ("En trancito","En trancito"),
+        ("En transito","En tranito"),
         ("Completado","Completado"),
 ]
 class Cliente(models.Model):

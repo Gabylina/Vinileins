@@ -32,9 +32,10 @@
             <ul class="marg">
                 <li> <a class="fuente_vinilo" style="text-decoration: none" href="{% url 'viniloscli' %}">Vinilos</a>
                 </li>
-                <li> <a class="fuente_vinilo" style="text-decoration: none" href="{% url 'buscarapi' %}">¿No encuentras tu vinilo?</a>
+                <li> <a class="fuente_vinilo" style="text-decoration: none" href="{% url 'buscarapi' %}">¿No encuentras
+                        tu vinilo?</a>
                 </li>
-                
+
                 <!-- <li> <a class="fuente_vinilo" style="text-decoration: none" href="#">Estilos +</a>
                     <ul>
                         <li><a class="fuente_vinilo" style="text-decoration: none"
@@ -51,14 +52,32 @@
                 <li> <a class="button_perf fuente_vinilo" style="float: left;" href="{% url 'iniciosesion'%}"><i
                             class="fa fa-user"></i></a></li>
                 <li> <a class="button_perf fuente_vinilo" style="float: left;" href="{% url 'carrito' %}"><i
-                            class="fa fa-shopping-cart"></i></a></li>
+                            class="fa fa-shopping-cart"></i>{{value.cantidad}}</a></li>
             </ul>
         </nav>
     </header>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    {% if messages %}
+    {% for m in messages %}
+    <script>
+        Swal.fire({
+            "title": "Producto agregado al carrito",
+            "text": "{{m}}",
+            "icon": "success"
+        })
+    </script>
+    {% endfor %}
+    {% endif %}
+
     {% block contenido%}
 
 
     {% endblock contenido%}
+
+
+
+
 
     <footer>
         <div class="contenedor">

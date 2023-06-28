@@ -4,6 +4,7 @@ from aplicaciones.carrito import Carrito
 from .models import Administrador, Cliente, Pedido,Vinilo
 from .forms import formCrearVinilo,formCrearAdmin,formpedido,formCrearCliente
 from django.db.models import Q
+from django.contrib import messages
 # Create your views here.
 
 def index(request):
@@ -29,6 +30,7 @@ def agregar_Vinilo(request, Vinilo_id):
     carrito=Carrito(request)
     vinilo=Vinilo.objects.get(id=Vinilo_id)
     carrito.agregar(vinilo)
+    messages.success(request, " ")
     return redirect(to="iniciocliente")
     
 def comprarahora(request, Vinilo_id):
@@ -266,6 +268,8 @@ def pago(request):
         'total_carro':total_carrito
     }
     return render(request,'aplicaciones/pago.html',contexto)
+
+
 
 # def vin_pop(request, estilo):
 #     v=get_object_or_404(Vinilo,id=estilo)
