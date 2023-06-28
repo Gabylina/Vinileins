@@ -2,35 +2,67 @@
 {% load static %}
 {%block contenido%}
 
-{% for dato in Cliente %}
 
-
-{% endfor %}
 <main style="margin-top: 15vh;">
     <div class="container">
         <h1>Bienvenido a tu perfil {{ user.first_name }}</h1>
         <div class="row justify-content-center align-items-center">
-            <div class="col-8">
+            <div class="col-5">
                 <table class="table table-striped table-bordered text-center">
                     <thead>
-                        <tr><th>nombre / apellido</th>
+                        Datos
+                        <tr>
+                            <th>nombre / apellido</th>
                             <th>correo</th>
                             <th>telefono</th>
                             <th>direccion</th>
                             <th>comuna / region</th>
-                            
+
                         </tr>
                     </thead>
                     <tbody>
                         {% for cl in cli %}
-                            {% if cl.correo == user.username %}
-                                <tr>
-                                    <td>{{cl.nombre}} / {{cl.apellido}} </td>
-                                    <td>{{cl.correo}}</td>
-                                    <td>{{cl.telefono}}</td>
-                                    <td>{{cl.direccion}}</td>
-                                    <td>{{cl.comuna}}, {{cl.region}}</td>
+                        {% if cl.correo == user.username %}
+                        <tr>
+                            <td>{{cl.nombre}} / {{cl.apellido}} </td>
+                            <td>{{cl.correo}}</td>
+                            <td>{{cl.telefono}}</td>
+                            <td>{{cl.direccion}}</td>
+                            <td>{{cl.comuna}}, {{cl.region}}</td>
                             {% endif %}
+                            {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-4">
+                <table class="table table-striped table-bordered text-center">
+                    Pedidos
+                    <thead>
+                        <tr>
+                            <th>id Pedido</th>
+                            <th>Productos</th>
+                            <th>Total</th>
+                            <th>Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for cl in cli %}
+                            {% for cped in Cped %}
+                                {% if cped.cliente == cl.correo %}
+                                    {% for ped in ped %}
+                                        {% if ped.id == cped.pedido %}
+                                            {% if cped.pedido == ped.id%}
+                                            <tr>
+                                                <td>{{cped.pedido}}</td>
+                                                <td>{{ped.producto}}</td>
+                                                <td>{{ped.total}}</td>
+                                                <td>{{ped.estado}}</td>
+                                            </tr>
+                                            {% endif %}
+                                        {% endif %}
+                                    {% endfor %}
+                                {% endif %}
+                            {% endfor %}
                         {% endfor %}
                     </tbody>
                 </table>

@@ -59,6 +59,7 @@ def limpiar_Carrito(request):
     return render(request,'aplicaciones/carrito.html')
 
 def carrito(reuqest):
+    
     return render(reuqest,'aplicaciones/carrito.html')
 def vinilos(request):
     vini=Vinilo.objects.all()
@@ -346,9 +347,13 @@ def registro(request):
 @login_required
 def perfil(request):
     cli=Cliente.objects.all()
+    Cped=CliPedido.objects.all()
+    ped=Pedido.objects.all()
     
     contexto={
         "cli":cli,
+        "Cped":Cped,
+        "ped":ped,
     }
     return render(request,'aplicaciones/perfil.html',contexto)
 

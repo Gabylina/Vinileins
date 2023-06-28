@@ -68,7 +68,7 @@ class Pedido(models.Model):
 class CliPedido(models.Model):
     id=models.AutoField(primary_key=True)
     cliente=models.CharField(max_length=2000)
-    pedido=models.CharField(max_length=2000)
+    pedido=models.IntegerField()
     
     def __str__(self):
         return f"{self.id}"

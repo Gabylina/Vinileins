@@ -16,7 +16,7 @@
                     <form action="" method="POST" enctype="multipart/form-data">
                         {% csrf_token %}
                         {{ formcli2 | crispy}}
-                        <div> formulario user </div>
+                        <div> El nombre de Usuario tiene que coincidir con el correo </div>
                         {{form | crispy}}
                         
 
