@@ -29,7 +29,7 @@
                         </tr>
                         {% endfor %}
                         <tr>
-                            <td colspan="3">Total del carrito: $ {{ total_carrito }}</td>
+                            <td colspan="3">Total del carrito: $ {{ total_carro }}</td>
                         </tr>
                         {% endif %}
                     </tbody>
@@ -37,31 +37,26 @@
             </div>
             <div class="col-5">
                 <table class="table table-striped table-bordered text-center">
-                    <thead>
-                        <tr>
-                            <th>nombre</th>
-                            <th>apellido</th>
-                            <br>
+                    <thead><!-- "rut","nombre","apellido","correo","contra","direccion","region","comuna","telefono" -->
+                        <tr><th>nombre / apellido</th>
                             <th>correo</th>
                             <th>telefono</th>
                             <th>direccion</th>
-                            <th>region</th>
-                            <th>comuna</th>
+                            <th>comuna / region</th>
+                            
                         </tr>
                     </thead>
                     <tbody>
-
-                        {% if request.session.carrito.items %}
-
-                        {% for key, value in Cliente %}
-
-                        <tr>
-                            <td>{{ value.nombre }}</td>
-                            <td>{{ value.acumulado }}</td>
-                            <td>{{ value.cantidad }}</td>
-                        </tr>
+                        {% for cl in cli %}
+                            {% if cl.correo == user.username %}
+                                <tr>
+                                    <td>{{cl.nombre}} / {{cl.apellido}} </td>
+                                    <td>{{cl.correo}}</td>
+                                    <td>{{cl.telefono}}</td>
+                                    <td>{{cl.direccion}}</td>
+                                    <td>{{cl.comuna}}, {{cl.region}}</td>
+                            {% endif %}
                         {% endfor %}
-                        {% endif %}
                     </tbody>
                 </table>
             </div>

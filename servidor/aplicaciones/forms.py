@@ -1,5 +1,5 @@
 from django import forms
-from .models import Cliente, Pedido, Vinilo,Administrador
+from .models import CliPedido, Cliente, Pedido, Vinilo,Administrador
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 
@@ -40,4 +40,10 @@ class formCrearCli(UserCreationForm):
     class Meta:
         model =User
         fields=["username","first_name","last_name","password1",'password2']
+        
+class formCliPedido(forms.ModelForm):
+    
+    class Meta:
+        model=CliPedido
+        fields=["id","cliente","pedido"]
         

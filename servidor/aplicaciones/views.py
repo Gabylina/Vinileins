@@ -1,8 +1,8 @@
 from django.shortcuts import render,get_object_or_404,redirect
 from datetime import date
 from aplicaciones.carrito import Carrito
-from .models import Administrador, Cliente, Pedido,Vinilo
-from .forms import formCreaC, formCrearVinilo,formCrearAdmin,formpedido,formCrearCliente,formCrearCli
+from .models import Administrador, CliPedido, Cliente, Pedido,Vinilo
+from .forms import formCliPedido, formCreaC, formCrearVinilo,formCrearAdmin,formpedido,formCrearCliente,formCrearCli
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required #obliga a que este logeado el cliente para realizar el cambio de vista
 from django.contrib.auth import authenticate, login
@@ -256,43 +256,18 @@ def precompra(request):
     }
     return render(request,'aplicaciones/precompra.html',contexto)
 
-def pago(request):
-    """ carro = Carrito.objects.get(id=pk)
-    contexto = {'carro': carro} """
-    total_carrito = 0
-    carrito = request.session.get("carrito", {})
-    
-    form = formpedido()
-    form.estado = "Sin enviar"
-    
-    product = []
-    
-    
-    for key, value in carrito.items():
-        total_carrito += value["acumulado"]
-        product.append(value["nombre"])
-        
-    product_str = "; ".join(product)
-    form.producto = product_str
-    form.total = total_carrito
-    
-    contexto = {
-        'total_carro':total_carrito,
-        'pedido':form,
-    }
-    
-    if form.is_valid():
-        pedid=form.save(commit=False)
-        pedid.save()
-        return redirect(to="iniciosesion")
-    return render(request,'aplicaciones/pago.html',contexto)
+
 
 def pago(request):
     total_carrito = 0
     carrito = request.session.get("carrito", {})
     
     form = formpedido()
-    
+    formcom = Pedido.objects.all()
+    Fped = formCliPedido()
+    cli = Cliente.objects.all()
+    user = request.user.username
+    PCmodel= CliPedido()
 
 
     product = []
@@ -308,12 +283,25 @@ def pago(request):
     pedido.total = total_carrito
     pedido.save()  # Guardar la instancia en la base de datos
     
-
+    Fped.pedido = pedido.id
+    Fped.cliente = user
+    Fped.id = pedido.id + 107
+    
+    PCmodel.pedido = Fped.pedido
+    PCmodel.cliente = Fped.cliente
+    PCmodel.id = Fped.id
+    PCmodel.save()
+    
     contexto = {
         'total_carro': total_carrito,
         'pedido': form,
+        'ped':formcom,
+        'pediCli': Fped,
+        'cli': cli,
+        'owo':Fped.id,
     }
     
+
     return render(request, 'aplicaciones/pago.html', contexto)
 
 def registro(request):
@@ -322,6 +310,7 @@ def registro(request):
     contexto = {
         'form':cliUs,
         'formcli2':cli,
+        
     }
     if request.method == 'POST':
         formulario = formCrearCli(request.POST)
@@ -335,7 +324,7 @@ def registro(request):
         contexto["form"]=formulario
     return render(request, 'registration/registro.html', contexto)
 
-def registroadmins(request):
+""" def registroadmins(request):
     cliUs = formCrearCli()
     cli = formCreaC()
     contexto = {
@@ -352,7 +341,7 @@ def registroadmins(request):
             login(request,user)
             return redirect(to="iniciocliente")
         contexto["form"]=formulario
-    return render(request, 'registration/registro.html', contexto)
+    return render(request, 'registration/registro.html', contexto) """
 
 @login_required
 def perfil(request):

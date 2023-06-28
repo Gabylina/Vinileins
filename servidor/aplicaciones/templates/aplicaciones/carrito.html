@@ -1,57 +1,6 @@
-{%load static%}
-<!DOCTYPE html>
-<html lang="es">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vinilos</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
-    <!-- Revisar iconos redes sociales -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
-
-
-    <!--CREO QUE SE DEBE ELIMINAR-->
-    <link rel="stylesheet" href="{% static 'aplicaciones/css/estilo.css' %}">
-
-
-
-
-</head>
-<body>
-    <header style="height: 10vh; ">
-        <a href="{% url 'iniciocliente' %}" class="logo fuente_vinilo" style="text-decoration: none;"><img
-                src="{% static 'aplicaciones/img/vinilo.png' %}" height="60px" style="  padding-right: 20px;"
-                alt="Logo"> Vinileins</a>
-        <input type="checkbox" id="menu-bar">
-        <label for="menu-bar">Menu</label>
-        <nav class="navbar">
-            <ul class="marg">
-                <li> <a class="fuente_vinilo" style="text-decoration: none" href="{% url 'viniloscli' %}">Vinilos</a>
-                </li>
-                <!-- <li> <a class="fuente_vinilo" style="text-decoration: none" href="#">Estilos +</a>
-                    <ul>
-                        <li><a class="fuente_vinilo" style="text-decoration: none"
-                                href="Estilos/vin_pop/vin_pop.html">Pop</a>
-                        </li>
-                        <li><a class="fuente_vinilo" style="text-decoration: none"
-                                href="Estilos/vin_rock/vin_rock.html">Rock</a>
-                        </li>
-                        <li><a class="fuente_vinilo" style="text-decoration: none"
-                                href="Estilos/vin_metal/vin_metal.html">Metal</a>
-                        </li>
-                    </ul>
-                </li> -->
-                <li> <a class="button_perf fuente_vinilo" style="float: left;" href="Inicio_sesion.html"><i
-                            class="fa fa-user"></i></a></li>
-                <li> <a class="button_perf fuente_vinilo" style="float: left;" href="carrito.html"><i
-                            class="fa fa-shopping-cart"></i></a></li>
-            </ul>
-        </nav>
-    </header>
+{% extends 'aplicaciones/base.html' %}
+{% load static %}
+{%block contenido%}
     <!--AQUI VA EL FONDO-->
     <main style="margin-top: 2vh;margin-bottom: 31vh;"><!-- Fondo mas margen entre menu y main -->
         <!-- Contenido -->
@@ -116,56 +65,4 @@
             </div>
         </div>
     </main>
-    <!-- Footer -->
-    <footer >
-        <div class="contenedor">
-            <div class="sobre-mi">
-                <h2 class="titulos-footer">Tienda</h2>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. At a quos error sapiente asperiores sed
-                    non, accusamus quaerat praesentium! Laudantium saepe doloribus aut rem dolore minima. Quibusdam
-                    expedita nisi eius.</p>
-                <ul class="redes-sociales"><!-- redes sociales -->
-                    <li><a href="#"><i class="fab fa-facebook"></i></a></li>
-                    <li><a href="#"><i class="fab fa-youtube"></i></a></li>
-                    <li><a href="#"><i class="fab fa-instagram"></i></i></a></li>
-                    <li><a href="#"><i class="fab fa-tiktok"></i></i></a></li>
-                </ul>
-            </div>
-            <div class="contactanos">
-                <h2 class="titulos-footer">Contáctanos</h2>
-                <ul class="informacion-contacto">
-                    <li>
-                        <span><i class="fa-solid fa-location-dot"></i></span>
-                        <p>Una direccion random<br> Concepcion, Biobio</p>
-                    </li>
-                    <li>
-                        <span><i class="fa-solid fa-phone"></i></span>
-                        <p>+123456789 <br> +999999999</p>
-                    </li>
-                    <li>
-                        <span><i class="fa-solid fa-envelope"></i></span>
-                        <p>correo@duocuc.cl</p>
-                    </li>
-                </ul>
-            </div>
-            <div class="navegacion">
-                <h2 class="titulos-footer">Medios de pago</h2>
-                <li>
-                    <i class="fa fa-cc-visa" style="font-size:30px; color:white"></i>
-                    <i class="fa fa-cc-mastercard" style="font-size:30px; color:white"></i>
-                    <i class="fa fa-cc-amex" style="font-size:30px;color:white"></i>
-                    <i class="fa fa-cc-diners-club" style="font-size:30px; color:white"></i>
-                </li>
-            </div>
-
-            <link rel="stylesheet"
-                href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-        </div>
-        <div class="copy">
-            Copyright © 2023 Vinilos por 'sopaipillas'
-        </div>
-    </footer>
-
-</body>
-</html>
+    <!-- Footer -->{%endblock%}
