@@ -27,6 +27,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+MESSAGE_STORAGE= "django.contrib.messages.storage.cookie.CookieStorage"
+
+
 #variables de redireccion al hacer login y logout
 
 LOGIN_REDIRECT_URL = 'iniciocliente'

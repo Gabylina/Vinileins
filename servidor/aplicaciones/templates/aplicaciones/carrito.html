@@ -44,9 +44,9 @@
                             <tr >
                                 <th scope="row">Total:</th>
                                 {% if request.session.carrito.items %}
-                                    <td style="font-size: medium;" colspan="2">$ {{carrito.com.acumulado}} </td>
+                                    <td style="font-size: medium;" colspan="2">$ {{total}} </td>
                                 {% else %}
-                                    <td style="font-size: medium;" colspan="2">$ nara</td>
+                                    <td style="font-size: medium;" colspan="2">$ 0</td>
                                 {% endif %}
                             </tr>
                             </tbody>

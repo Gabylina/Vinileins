@@ -6,6 +6,8 @@ from .forms import formCliPedido, formCreaC, formCrearVinilo,formCrearAdmin,form
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required #obliga a que este logeado el cliente para realizar el cambio de vista
 from django.contrib.auth import authenticate, login
+from django.contrib import messages
+
 
 # Create your views here.
 
@@ -32,35 +34,95 @@ def agregar_Vinilo(request, Vinilo_id):
     carrito=Carrito(request)
     vinilo=Vinilo.objects.get(id=Vinilo_id)
     carrito.agregar(vinilo)
+    messages.success(request, " ")
+    
     return redirect(to="iniciocliente")
     
 def comprarahora(request, Vinilo_id):
     carrito=Carrito(request)
     vinilo=Vinilo.objects.get(id=Vinilo_id)
     carrito.agregar(vinilo)
+    total_carrito = 0
+    carrito = request.session.get("carrito", {})
     
-    return render(request,'aplicaciones/carrito.html')
+    for key, value in carrito.items():
+        total_carrito += value["acumulado"]
+    
+    contexto = {
+        'total': total_carrito,
+        
+    }
+    
+    return render(request,'aplicaciones/carrito.html',contexto)
     
 def eliminar_Vinilo(request, vinilo_id):
     carrito=Carrito(request)
     vinilo=Vinilo.objects.get(id=vinilo_id)
     carrito.elminar(vinilo)
-    return render(request,'aplicaciones/carrito.html')
+    total_carrito = 0
+    carrito = request.session.get("carrito", {})
+    
+    for key, value in carrito.items():
+        total_carrito += value["acumulado"]
+    
+    contexto = {
+        'total': total_carrito,
+        
+    }
+    return render(request,'aplicaciones/carrito.html',contexto)
     
 def restar_Vinilo(request, Vinilo_id):
     carrito=Carrito(request)
     vinilo=Vinilo.objects.get(id=Vinilo_id)
     carrito.restar(vinilo)
-    return render(request,'aplicaciones/carrito.html')
+    total_carrito = 0
+    carrito = request.session.get("carrito", {})
+    
+    for key, value in carrito.items():
+        total_carrito += value["acumulado"]
+    
+    contexto = {
+        'total': total_carrito,
+        
+    }
+    return render(request,'aplicaciones/carrito.html',contexto)
     
 def limpiar_Carrito(request):
     carrito=Carrito(request)
     carrito.limpiar()
-    return render(request,'aplicaciones/carrito.html')
-
-def carrito(reuqest):
+    total_carrito = 0
+    carrito = request.session.get("carrito", {})
     
-    return render(reuqest,'aplicaciones/carrito.html')
+    for key, value in carrito.items():
+        total_carrito += value["acumulado"]
+    total_carrito = 0
+    carrito = request.session.get("carrito", {})
+    
+    for key, value in carrito.items():
+        total_carrito += value["acumulado"]
+    
+    contexto = {
+        'total': total_carrito,
+        
+    }
+    contexto = {
+        'total': total_carrito,
+        
+    }
+    return render(request,'aplicaciones/carrito.html',contexto)
+
+def carrito(request):
+    total_carrito = 0
+    carrito = request.session.get("carrito", {})
+    
+    for key, value in carrito.items():
+        total_carrito += value["acumulado"]
+    
+    contexto = {
+        'total': total_carrito,
+        
+    }
+    return render(request,'aplicaciones/carrito.html',contexto)
 def vinilos(request):
     vini=Vinilo.objects.all()
     

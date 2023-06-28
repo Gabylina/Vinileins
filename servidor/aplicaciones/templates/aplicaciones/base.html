@@ -30,8 +30,8 @@
         <label for="menu-bar">Menu</label>
         <nav class="navbar">
             <ul class="marg">
-                <li> <a class="fuente_vinilo" style="text-decoration: none" href="{% url 'buscarapi' %}">API</a>
-                </li>
+                <li> <a class="fuente_vinilo" style="text-decoration: none" href="{% url 'buscarapi' %}">¿No encuentras
+                    tu vinilo?</a></li>
                 <li> <a class="fuente_vinilo" style="text-decoration: none" href="{% url 'viniloscli' %}">Vinilos</a>
                 </li>
                 <!-- <li> <a class="fuente_vinilo" style="text-decoration: none" href="#">Estilos +</a>
@@ -48,7 +48,7 @@
                     </ul>
                 </li> -->
                 {% if user.is_authenticated %}
-                <li><a class="fuente_vinilo" style="text-decoration: none" href="#">{{user.username}}</a>
+                <li><a class="fuente_vinilo" style="text-decoration: none" href="#">{{user.first_name}}</a>
                     <ul>
                         <li><a class="button_perf fuente_vinilo" style="float: left;" href="{% url 'perfil' %}"><i class="fa fa-user"></i> Perfil</a></li>
                         <li><a class="button_perf fuente_vinilo" style="float: left;" href="{% url 'logout' %}"><i class="fa fa-user"></i> Salir</a></li>
@@ -63,6 +63,20 @@
             </ul>
         </nav>
     </header>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    {% if messages %}
+    {% for m in messages %}
+    <script>
+        Swal.fire({
+            "title": "Producto agregado al carrito",
+            "text": "{{m}}",
+            "icon": "success"
+        })
+    </script>
+    {% endfor %}
+    {% endif %}
+
     {% block contenido%}
 
 
