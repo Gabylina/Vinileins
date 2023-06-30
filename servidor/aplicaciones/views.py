@@ -213,8 +213,13 @@ def añadiradmin(request):
 
 def pedidos(request):
     pedido=Pedido.objects.all()
+    clipedido=CliPedido.objects.all()
+    cliente=Cliente.objects.all()
+    
     contexto={
         "ped":pedido,
+        "cped":clipedido,
+        "cli":cliente,
     }
     
     return render(request,'aplicaciones/admin/pedidos.html',contexto)

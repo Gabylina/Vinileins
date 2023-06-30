@@ -73,6 +73,8 @@
                                     <th>Num pedido</th>
                                     <th>Productos</th>
                                     <th>Valor total pedido</th>
+                                    <th>Cliente</th>
+                                    <th>direccion</th>
                                     <th>Estado</th>
                                 </tr>
                             </thead>
@@ -82,9 +84,19 @@
                                     <td style="font-size: medium;">{{ped.id}}</td>
                                     <td style="font-size: medium;">{{ped.producto}}</td>
                                     <td style="font-size: medium;">{{ped.total}}</td>
+                                    {% for cped in cped  %}
+                                        {% if ped.id == cped.pedido %}
+                                            {% for cli in cli  %}
+                                                {% if cli.correo == cped.cliente %}
+                                                    <td>{{cli.nombre}} {{cli.apellido}}</td>
+                                                    <td>{{cli.direccion}}, {{cli.comuna}}, {{cli.region}}</td>
+                                                {% endif %}
+                                            {% endfor %}
+                                        {% endif %}
+                                    {% endfor %}
                                     <td style="font-size: medium;"><form method="POST" enctype="multipart/form-data" > 
                                         {{ped.estado}}
-                                        {% csrf_token %}  
+                                        {% csrf_token %}
                                         {{ form|crispy}}
                                         <br>
                                         <a href="{% url 'modificarestado' ped.id %}" role="button" class="btn btn-primary">Modificar</a>
