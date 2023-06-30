@@ -309,6 +309,7 @@ def crearcuenta(request):
 def buscarapi(request):
     return render(request,'aplicaciones/buscarapi.html')
 
+@login_required #obliga al cliente a estar registrado para comprar / se evitan pedidos y compras sin clientes registrados
 def precompra(request):
     cli=Cliente.objects.all()
     
@@ -335,7 +336,6 @@ def pago(request):
     Fped = formCliPedido()
     cli = Cliente.objects.all()
     user = request.user.username
-    PCmodel= CliPedido()
 
 
     product = []
@@ -349,16 +349,13 @@ def pago(request):
     pedido.estado = "Sin enviar"
     pedido.producto = product_str
     pedido.total = total_carrito
-    pedido.save()  # Guardar la instancia en la base de datos
     
     Fped.pedido = pedido.id
     Fped.cliente = user
-    Fped.id = pedido.id + 107
+    Fped.id = pedido.id 
     
-    PCmodel.pedido = Fped.pedido
-    PCmodel.cliente = Fped.cliente
-    PCmodel.id = Fped.id
-    PCmodel.save()
+    
+    
     
     contexto = {
         'total_carro': total_carrito,
@@ -424,6 +421,64 @@ def perfil(request):
     }
     return render(request,'aplicaciones/perfil.html',contexto)
 
+def pagoExito(request):
+    total_carrito = 0
+    carrito = request.session.get("carrito", {})
+    
+    form = formpedido()
+    formcom = Pedido.objects.all()
+    Fped = formCliPedido()
+    cli = Cliente.objects.all()
+    user = request.user.username
+    PCmodel= CliPedido()
+
+
+    product = []
+    for key, value in carrito.items():
+        total_carrito += value["acumulado"]
+        product.append(value["nombre"])
+    
+    product_str = "; ".join(product)
+    
+    pedido = Pedido()  # Crear una instancia del modelo Pedido
+    pedido.estado = "Sin enviar"
+    pedido.producto = product_str
+    pedido.total = total_carrito
+    pedido.save()  # Guardar la instancia en la base de datos
+    
+    Fped.pedido = pedido.id
+    Fped.cliente = user
+    Fped.id = pedido.id + 107
+    
+    PCmodel.pedido = Fped.pedido
+    PCmodel.cliente = Fped.cliente
+    PCmodel.id = Fped.id
+    PCmodel.save()
+    
+    
+    #Limpiar carro al hacer el pago
+    carrito=Carrito(request)
+    carrito.limpiar()
+    total_carrito = 0
+    carrito = request.session.get("carrito", {})
+    
+    for key, value in carrito.items():
+        total_carrito += value["acumulado"]
+    
+    contexto = {
+        'total_carro': total_carrito,
+        'pedido': form,
+        'ped':formcom,
+        'pediCli': Fped,
+        'cli': cli,
+        'owo':Fped.id,
+        'total': total_carrito,
+
+    }
+    
+    
+    
+    return render(request,"aplicaciones/pagoExito.html",contexto)
 # def vin_pop(request, estilo):
 #     v=get_object_or_404(Vinilo,id=estilo)
     

@@ -40,27 +40,7 @@
                         <td>${{ total_carro }}</td>
                     {% endif %}
                 </tbody>
-                <thead>
-                    <tr>
-                        <th>id pedido</th>
-                        <th>cliente</th>
-                        <th>pedido</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>{% for cl in cli %}
-                            {% if cl.correo == user.username %}
-                                <td>{{ owo }}</td>
-                                <td>{{ user.username }}</td>
-                                {% for p in ped %}
-                                    {% if forloop.last %}
-                                        <td>{{ p.id }}</td>
-                                    {% endif %}
-                                {% endfor %}
-                            {% endif %}
-                        {% endfor %}
-                    </tr>
-                </tbody>
+                
             </table>
             <div id="paypal-button-container"></div>
         </div>
@@ -101,7 +81,7 @@
             return actions.order.capture().then(function (details) {
                 alert('transaccion completa' + details.payer.name.given_name + '!');
 
-                var url = "{% url 'iniciocliente' %}"; 
+                var url = "{% url 'pagoExito' %}"; 
                 var link = document.createElement('a');
                 link.href = url;
                 link.click();

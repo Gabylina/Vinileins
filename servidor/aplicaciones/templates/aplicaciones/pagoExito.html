@@ -1,0 +1,41 @@
+{% extends 'aplicaciones/base.html' %}
+{% load static %}
+{%block contenido%}
+<link rel="stylesheet" href="{% static 'aplicaciones/css/style.css' %}">
+<link rel="stylesheet" href="{% static 'aplicaciones/css/estilovinilos.css' %}">
+<main style="margin-top: 13vh; margin-bottom: 285px;">
+    <!--AQUI VA TODO LO QUE LE QUEREMOS PONER A NUESTRA PAGINA--> 
+
+    <thead>
+        <tr>
+            <th>id pedido</th>
+            <th>cliente</th>
+            <th>pedido</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>{% for cl in cli %}
+                {% if cl.correo == user.username %}
+                    <td>{{ owo }}</td>
+                    <td>{{ user.username }}</td>
+                    {% for p in ped %}
+                        {% if forloop.last %}
+                            <td>{{ p.id }}</td>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+            {% endfor %}
+        </tr>
+    </tbody>
+
+
+
+
+
+        <a id="redireccion" href="{% url 'iniciocliente' %}"></a>
+        <script type="text/javascript" src="{% static 'aplicaciones/js/pagoexit.js' %}"></script>
+
+</main>
+    <!-- Footer -->
+
+{%endblock%}
